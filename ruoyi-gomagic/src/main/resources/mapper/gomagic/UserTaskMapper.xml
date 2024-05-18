@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.gomagic.mapper.UserTaskMapper">
+
+    <select id="getImageAllNumAndNewAdd" resultType="com.ruoyi.gomagic.dto.EveryDayADD">
+        SELECT DATE(FROM_UNIXTIME(create_time / 1000)) AS date, COUNT(*) AS num
+        FROM user_task
+        WHERE DATE(FROM_UNIXTIME(create_time / 1000)) >= CURDATE() - INTERVAL #{day} DAY and type!=12
+        GROUP BY DATE(FROM_UNIXTIME(create_time / 1000))
+        ORDER BY DATE(FROM_UNIXTIME(create_time / 1000)) ASC;
+    </select>
+
+    <select id="getVideoAllNumAndNewAdd" resultType="com.ruoyi.gomagic.dto.EveryDayADD">
+        SELECT DATE(FROM_UNIXTIME(create_time / 1000)) AS date, COUNT(*) AS num
+        FROM user_task
+        WHERE DATE(FROM_UNIXTIME(create_time / 1000)) >= CURDATE() - INTERVAL #{day} DAY and type=13
+        GROUP BY DATE(FROM_UNIXTIME(create_time / 1000))
+        ORDER BY DATE(FROM_UNIXTIME(create_time / 1000)) ASC;
+    </select>
+</mapper>

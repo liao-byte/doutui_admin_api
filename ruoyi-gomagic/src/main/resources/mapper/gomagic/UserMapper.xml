@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.gomagic.mapper.UserMapper">
+
+    <select id="getNewAdd" resultType="com.ruoyi.gomagic.dto.EveryDayADD">
+        SELECT DATE(create_time) AS date, COUNT(*) AS num
+        FROM `user`
+        WHERE DATE(create_time) >= CURDATE() - INTERVAL #{day} DAY
+        GROUP BY DATE(create_time)
+        ORDER BY DATE(create_time) ASC;
+    </select>
+</mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.gomagic.mapper.DyLoginLogMapper">
+
+    <select id="getCityAndTaskid" resultType="com.ruoyi.gomagic.domain.DyLoginLog">
+        SELECT * FROM dy_login_log WHERE status=0 ORDER BY create_time ASC LIMIT 1;
+    </select>
+    <select id="getByTaskId" resultType="com.ruoyi.gomagic.domain.DyLoginLog">
+        SELECT * FROM dy_login_log WHERE task_id = #{taskId}
+    </select>
+    <select id="getLastTask" resultType="com.ruoyi.gomagic.domain.DyLoginLog">
+        SELECT * FROM dy_login_log ORDER BY create_time DESC LIMIT 1;
+    </select>
+</mapper>
