@@ -19,7 +19,7 @@ jobs:
       - name: maven打包
         run: mvn clean install
       - name: 上传jar包和启动脚本到服务器中
-        run: sshpass -p ${{secrets.PASSWORD}} scp -r -o StrictHostKeyChecking=no ./ruoyi-admin/target/ruoyi-admin.jar  root@${{secrets.HOST}}:/github/ruoyi-admin
+        run: sshpass -p ${{secrets.PASSWORD}} scp -r -o StrictHostKeyChecking=no ./ruoyi-admin/target/ruoyi-admin.jar ./Dockerfile root@${{secrets.HOST}}:/github/ruoyi-admin
   prod:
     runs-on: ubuntu-latest
     needs: build
